@@ -1,49 +1,30 @@
 import * as fs from "fs";
 import * as path from "path";
+import { parseListOfCalories } from "./parseListOfCalories";
+import { addAndSortCalories } from "./addAndSortCalories";
 
-function parseListOfCalories(input: string) {
-	const baseArray = input.split("\n");
-	let result: string[][] = [];
-	let currentIndex = 0;
+// 🎄 🎅 Advent of Code 2022 Day 1 🎅 🎄
 
-	baseArray.forEach((item) => {
-		if (item === "") {
-			currentIndex += 1;
-			return;
-		}
+const input = fs.readFileSync(path.join(__dirname, "input.txt"), "utf8");
+const listOfCalories = parseListOfCalories(input);
+const sortedListOfCalories = addAndSortCalories(listOfCalories);
 
-		if (!result[currentIndex]) {
-			result[currentIndex] = [];
-		}
+// 🍬 🍭 Part 1 🍭 🍬
 
-		result[currentIndex].push(item);
-	});
+const elfWithMostCalories = sortedListOfCalories[0];
 
-	return result;
-}
-
-function findElfWithMostCalories(listOfCalories: string[][]) {
-	let listOfAddedCalories: number[] = [];
-
-	listOfCalories.forEach((list) => {
-		let result = 0;
-
-		list.forEach((item) => {
-			result += +item;
-		});
-
-		listOfAddedCalories.push(result);
-	});
-
-	return Math.max(...listOfAddedCalories);
-}
-
-const listOfCalories = fs.readFileSync(
-	path.join(__dirname, "input.txt"),
-	"utf8"
+console.log(
+	`The elf with the most calories has ${elfWithMostCalories} calories! 🎅 🍭 🍬`
 );
 
-const sortedListOfCalories = parseListOfCalories(listOfCalories);
-const mostCalories = findElfWithMostCalories(sortedListOfCalories);
+// 🍬 🍭 Part 2 🍭 🍬
 
-console.log(mostCalories);
+const topThreeElvesWithMostCalories = sortedListOfCalories.slice(0, 3);
+const totalOfTopThreeElves = topThreeElvesWithMostCalories.reduce(
+	(a, b) => a + b,
+	0
+);
+
+console.log(
+	`The top three elves with the most calories have ${totalOfTopThreeElves} calories in total! 🎅 🍭 `
+);

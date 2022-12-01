@@ -25,34 +25,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
-function parseListOfCalories(input) {
-    const baseArray = input.split("\n");
-    let result = [];
-    let currentIndex = 0;
-    baseArray.forEach((item) => {
-        if (item === "") {
-            currentIndex += 1;
-            return;
-        }
-        if (!result[currentIndex]) {
-            result[currentIndex] = [];
-        }
-        result[currentIndex].push(item);
-    });
-    return result;
-}
-function findElfWithMostCalories(listOfCalories) {
-    let listOfAddedCalories = [];
-    listOfCalories.forEach((list) => {
-        let result = 0;
-        list.forEach((item) => {
-            result += +item;
-        });
-        listOfAddedCalories.push(result);
-    });
-    return Math.max(...listOfAddedCalories);
-}
-const listOfCalories = fs.readFileSync(path.join(__dirname, "input.txt"), "utf8");
-const sortedListOfCalories = parseListOfCalories(listOfCalories);
-const mostCalories = findElfWithMostCalories(sortedListOfCalories);
-console.log(mostCalories);
+const parseListOfCalories_1 = require("./parseListOfCalories");
+const addAndSortCalories_1 = require("./addAndSortCalories");
+// 🎄 🎅 Advent of Code 2022 Day 1 🎅 🎄
+const input = fs.readFileSync(path.join(__dirname, "input.txt"), "utf8");
+const listOfCalories = (0, parseListOfCalories_1.parseListOfCalories)(input);
+const sortedListOfCalories = (0, addAndSortCalories_1.addAndSortCalories)(listOfCalories);
+// 🍬 🍭 Part 1 🍭 🍬
+const elfWithMostCalories = sortedListOfCalories[0];
+console.log(`The elf with the most calories has ${elfWithMostCalories} calories! 🎅 🍭 🍬`);
+// 🍬 🍭 Part 2 🍭 🍬
+const topThreeElvesWithMostCalories = sortedListOfCalories.slice(0, 3);
+const totalOfTopThreeElves = topThreeElvesWithMostCalories.reduce((a, b) => a + b, 0);
+console.log(`The top three elves with the most calories have ${totalOfTopThreeElves} calories in total! 🎅 🍭 `);
