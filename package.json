@@ -5,5 +5,8 @@
   },
   "scripts": {
     "watch": "tsc -w"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
   }
 }
