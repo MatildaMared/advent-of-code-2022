@@ -26,12 +26,12 @@ interface File {
 
 let currentPath: string[] = [];
 
-function getDirectory(directory: any, path: string[]): any {
+function getDirectory(currentDirectory: any, path: string[]): any {
 	const [currentPath, ...rest] = path;
 	if (path.length === 0) {
-		return directory;
+		return currentDirectory;
 	} else {
-		return getDirectory(directory.contents[currentPath], rest);
+		return getDirectory(currentDirectory.contents[currentPath], rest);
 	}
 }
 
