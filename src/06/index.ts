@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as path from "path";
-import { forEachChild } from "typescript";
 
 // 🎄 🎅 Advent of Code 2022 Day 6 🎅 🎄
 
