@@ -26,15 +26,6 @@ interface File {
 
 let currentPath: string[] = [];
 
-function getDirectory(currentDirectory: any, path: string[]): any {
-	const [currentPath, ...rest] = path;
-	if (path.length === 0) {
-		return currentDirectory;
-	} else {
-		return getDirectory(currentDirectory.contents[currentPath], rest);
-	}
-}
-
 function handleCommand(line: string, index: number) {
 	const [_, ...commands] = line.split(" ");
 	switch (commands[0]) {
@@ -69,6 +60,15 @@ function handleCommand(line: string, index: number) {
 				}
 			});
 			break;
+	}
+}
+
+function getDirectory(currentDirectory: any, path: string[]): any {
+	const [currentPath, ...rest] = path;
+	if (path.length === 0) {
+		return currentDirectory;
+	} else {
+		return getDirectory(currentDirectory.contents[currentPath], rest);
 	}
 }
 
