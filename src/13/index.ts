@@ -1,10 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import { isJSDocReadonlyTag } from "typescript";
 
 // 🎄 🎅 Advent of Code 2022 Day 13 🎅 🎄
-
-// 🍬 🍭 Part 1 🍭 🍬
 
 const input = fs
 	.readFileSync(path.join(__dirname, "input.txt"), "utf8")
