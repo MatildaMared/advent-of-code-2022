@@ -57,6 +57,7 @@ input.forEach((rowOfTrees, rowIndex) => {
 		const treesVisibleFromTop = currentColumn.slice(0, rowIndex);
 
 		let isVisibleFromTop = true;
+
 		treesVisibleFromTop.forEach((visibleTree) => {
 			if (visibleTree >= +tree) {
 				isVisibleFromTop = false;
@@ -114,6 +115,7 @@ input.forEach((rowOfTrees, rowIndex) => {
 		}
 
 		const treesAbove = input.slice(0, rowIndex).map((row) => row[index]);
+		console.log("trees above", treesAbove);
 		let viewDistanceFromTop = 0;
 		for (let i = treesAbove.length - 1; i >= 0; i--) {
 			const treeFromTop = treesAbove[i];
